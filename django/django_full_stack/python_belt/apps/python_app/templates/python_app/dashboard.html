@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>dashboard</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'python_app/css/style.css' %}">    
+        <script src="{% static 'python_app/js/script.js' %}"></script>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="navbar navbar-expand-sm navbar-light bg-light">
+            <h1>Hello</h1>
+            <h3> {{user.first_name}}</h3>
+            <div class="navbar-nav">
+                <a href="/logout" class="nav-item nav-link">Logout</a>
+            </div>
+        </div>
+        <div class="container">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li class="alert alert-success">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        </div>
+        <h2>My wish list</h2>
+        <table class="table">
+                <thead>
+                    <tr class="bg-secondary">
+                        <th scope="col">Item</th>
+                        <th scope="col">Added By</th>
+                        <th scope="col">Date Add</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for wish in wishes %}
+                    <tr>
+                        <td class="border-right"><a href="/wish_items/{{wish.wish.id}}">{{wish.wish.title}}</a></td>
+                        <td class="border-right">{{wish.wish.user.first_name}}</td>
+                        <td class="border-right">{{wish.created_at}}</td>
+                        {% if request.session.user_id == wish.wish.user.id %}
+                        <td ><a href="/wish_items/{{wish.wish.id}}/delete"> delete </a></td>
+                        {% endif %}
+                        {% if request.session.user_id != wish.wish.user.id %}
+                        <td><a href="/wish_items/{{wish.wish.id}}/remove"> Remove </a></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <h2>Other users wish list</h2>
+            <table class="table">
+                    <thead>
+                        <tr class="bg-secondary">
+                            <th scope="col">Item</th>
+                            <th scope="col">Added By</th>
+                            <th scope="col">Date Add</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                        <tr>
+                            <td class="border-right"><a href="/wish_items/{{item.id }}">{{item.title}}</a></td>
+                            <td class="border-right">{{item.user.first_name}}</td>
+                            <td class="border-right">{{item.created_at}}</td>
+                            <td ><a href="/wish_items/{{item.id}}/add ">add to wishlist</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a href="/wish_items/create" class="btn btn-primary">Add new item</a>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

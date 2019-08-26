@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Wall</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="navbar navbar-expand-sm navbar-light bg-light">
+            <h1>CodingDojo Wall</h1>
+            <h3>Welcome {{user.first_name}}</h3>
+            <div class="navbar-nav">
+                <a href="/logout" class="nav-item nav-link">Logout</a>
+            </div>
+        </div>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li class="alert alert-success">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <div class="container">
+            <form action = "/addmessage" method = 'POST'>
+            {% csrf_token %}
+                <div class="form-group">
+                    <label for=""></label>
+                    <textarea class="form-control" name="add_message" rows="3"></textarea>
+                    <button type="submit" class="btn btn-primary">Add Message</button>
+                </div>
+            </form>
+
+            <h2>Messages:</h2>
+            {% if post_data %}
+            {% for post in post_data reversed %}
+                <div>
+                <h3>{{ post.user.first_name }} {{post.user.last_name}} -- {{ post.created_at }}</h3>
+                <p>{{ post.message }}</p>
+                {{post_data.id}} 
+                {% if post.user.id == request.session.user_id %}
+                <a href="/message/{{post.id}}/delete"><button type="button" class="btn btn-danger">Delete</button></a>
+                {% endif %}
+
+                <h6>Comments:</h6>
+                {% if comment_data %}
+                    {% for comment in comment_data %}
+                        <ul>
+                            {% if comment.message_c.id == post.id %}
+                            <li>{{comment.comment}}--{{ comment.users_c.first_name }} {{comment.users_c.last_name}} -- {{ comment.created_at}}</li>
+                            {% endif %}    
+                        </ul>
+                    {% endfor %}
+                {% endif %}
+                <form action="/addcomment" method='POST'>
+                    {% csrf_token %}
+                    <input type="hidden" value={{post.id}} name="message_id">
+                    <textarea class="form-control" name="add_comment" rows="2"></textarea>
+                    <button type="submit" class="btn btn-success">Add Comment</button>
+                </form>
+            </div>
+            {% endfor %}
+            {% endif %}        
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

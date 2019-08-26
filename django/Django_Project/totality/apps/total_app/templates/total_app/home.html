@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>homepage</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--- Static -->
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'total_app/css/style.css' %}">    
+        <script src="{% static 'total_app/js/script.js' %}"></script>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">        
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    </head>
+    <style>
+        body{
+            background-color: black;
+        }
+    
+        body,h1 {font-family: "Raleway", sans-serif}
+        body, html {height: 100%}
+        .bgimg {
+        min-height: 100%;
+        background-position: center;
+        background-size: cover;
+        }
+    </style>
+    <body>
+        
+
+        <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="/home">Totality</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/users">Login</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/adduser">Sign Up</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/products">Products</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
+            <div class="w3-display-middle">
+                    <h1 class="w3-jumbo w3-center">Totality is everything.</h1>
+                    <hr class="w3-border-grey" style="margin:auto;width:40%">
+                <h1 class="w3-xxlarge w3-center">Fullfilling all your shopping needs</h1>
+            </div>
+        </div>
+
+    </body>
+</html>

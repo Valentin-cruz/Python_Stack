@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>mysqlconn</title>
+    </head>
+    <body>
+        <h1>All My Friends</h1>
+        {% for one_friend in all_friends %}
+            <p>Name: {{one_friend["name"]}}</p>
+            <p>Type: {{one_friend["type"]}}</p>
+            <hr>
+        {% endfor %}
+        
+        <h1>Add a Friend</h1>
+        <form action="/create_friend" method="POST">
+            <p>Name: <input type="text" name="name"></p>
+            <p>Type: <input type="text" name="type"></p>
+            <input type="submit" value="Add Friend">
+        </form>
+    </body>
+</html>

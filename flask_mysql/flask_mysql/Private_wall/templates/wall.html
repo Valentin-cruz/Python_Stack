@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>wall</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="header">
+            <div>
+                <h1>CodingDojo Wall</h1>
+            </div>
+            <div>
+                <h2>Welcome Back</h2>
+                <a href="/logout"><button type="button" class="btn btn-outline-primary">logout</button></a>        
+            </div>
+        </div>
+        <div class="to_you">
+            <h2>Messages to you</h2>
+            <div class="message_log">
+                {% for message in messages %}
+                    <h5>{{message['first_name']}} {{message['last_name']}} said on {{message['created_at']}}:</h5>
+                    <div class='text'>
+                        <p class="ml_ptext">"{{message['message']}}"</p>
+                    </div>
+                    <a href="/delete/{{message['id']}}"><button class="btn btn-light trash_button" type="button"></button></a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="from_you">
+            <h2>Send messages</h2>
+            {% for send in sends %}
+            <form action="/send"method='post'>
+                <label for="exampleFormControlTextarea1"></label>
+                <p>To: {{send['first_name'].title()}} {{send['last_name'].title()}} <button type="submit" class="btn btn-outline-primary send_btn" name="button" value="{{send['id']}}">Send</button></p>
+                
+                <textarea class="form-control" id="message" rows="2" placeholder="" name='message'></textarea>
+            </form>
+        {% endfor %}
+        </div>
+        
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

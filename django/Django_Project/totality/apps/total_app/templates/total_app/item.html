@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Item</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!--- Static -->
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'total_app/css/style.css' %}">    
+        <script src="{% static 'total_app/js/script.js' %}"></script>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Ecommerce</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/cart">Shopping Cart <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/products">Products</a>
+                </li>
+                <li class="nav-item active dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    My Account
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/wishlist">My Wishlist</a>
+                    <a class="dropdown-item" href="/cart">Shopping Cart</a>
+                    <a class="dropdown-item" href="/orders">Order History</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/payment">Add Payment Method</a>
+                    <a class="dropdown-item" href="/edit">Edit Profile</a>
+                    <a class="dropdown-item" href="/logout">Logout</a>
+                    </div>
+                </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="jumbotron-fluid">
+                <div class="row">
+                    <div class="col-9"><h1>Item 123</h1></div>
+                    <div class="col-4"><img src="{% static 'total_app/images/alpaca1.jpg' %}" alt="..." class="img-thumbnail">
+                        <br><h3>Price:  $1,000</h3> 
+                    </div>
+                    <div class="col-6"><h3>Description:</h3><br>pretium eget pharetra eu, rutrum aliquam justo. 
+                        Sed condimentum gravida dui, a placerat dolor porttitor non. Sed a varius enim, a porta lorem. 
+                        Etiam ornare velit ante, sit amet malesuada massa consequat eget. Sed a mi in nulla pulvinar ultrices eget non quam. 
+                        Phasellus eu nibh felis.
+                    </div>
+                </div>
+                <a href="/addcart"><button type="submit" class="ml-5 btn btn-primary">Add to Cart</button></a>
+            </div>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang = "en">
+    <meta charset="UTF-8">
+    <title>Playground2</title>
+</head>
+<style>
+    .container div{
+        background-color: blue;
+        width: 60px;
+        min-height: 60px;
+        display: inline-block;
+        margin: 10px;
+    }
+</style>
+<body>
+
+    <div class="container">
+        {%for i in range(repeat):%}
+        <div class="box"></div>
+        {%endfor%}
+    </div>
+
+</body>
+</html>

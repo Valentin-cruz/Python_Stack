@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head lang = "en">
+        <meta charset="UTF-8">
+        <title>checkerboard</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+
+        <table>
+        {% for i in range(4):%}
+            <tr>
+                {% for j in range(c):%}
+                <td class="color1"></td>
+                <td class="color2"></td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for j in range(r):%}
+                <td class="color2"></td>
+                <td class="color1"></td> 
+                {% endfor %}         
+            </tr>
+        {% endfor %}
+        </table>
+
+    </body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'money_app/css/style.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="alert alert-info" role="alert">Your Gold: {{request.session.gold}}</div>
+        <div class="box_selection_container">
+            <form action="/process_money" method="post">
+                {% csrf_token %}
+                <div class="selection_box">
+                    <h4>Farm</h4>
+                    <p>(earn/lose 1-8 gold)</p>
+                    <button type="submit" class="btn btn-outline-primary" name="button" value="farm">Get Gold</button>
+                </div>
+                <div class="selection_box">
+                        <h4>Cave</h4>
+                        <p>(earn/lose 0-10 gold)</p>
+                        <button type="submit" class="btn btn-outline-primary" name="button" value="cave">Get Gold</button>
+                </div>
+                <div class="selection_box">
+                        <h4>Loot People</h4>
+                        <p>(earn/lose 2-5 gold)</p>
+                        <button type="submit" class="btn btn-outline-primary" name="button" value="loot">Get Gold</button>
+                </div>
+                <div class="selection_box">
+                        <h4>Casino</h4>
+                        <p>(earn/lose 10-100 gold)</p>
+                        <button type="submit" class="btn btn-outline-primary" name="button" value="casino">Get Gold</button>
+                </div>
+            </form>
+        </div>
+        <div class="actvity">
+            <form action="/reset" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-primary pull-right" value="Reset">
+            </form>
+            <div class="row">
+                <h3>Activities:</h3>
+                <div class="col-lg-6" style="overflow: scroll">
+                    {% for log in request.session.activities reversed %}
+                        {% if "lost" in log %}
+                            <h4 class="text-danger">{{ log }}</h4>
+                        {% else %}
+                            <h4 class="text-success">{{ log }}</h4>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

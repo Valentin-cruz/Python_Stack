@@ -1,0 +1,8 @@
+<h1>Submitted Info</h1>
+{% for one_survey in all_survey %}
+    <p>Name: {{one_survey["name"]}}</p>
+    <p>Location: {{one_survey["location"]}}</p>
+    <p>Language: {{one_survey["language"]}}</p>
+    <p>Comment: {{one_survey["comment"]}}</p>
+    <hr>
+{% endfor %}

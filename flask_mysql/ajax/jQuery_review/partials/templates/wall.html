@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <script src="{{ url_for('static', filename='wall.js') }}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+
+    <form action="/register" method="post" id="regForm">
+        <div id="usernameMsg">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-danger" role="alert">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>   <!-- notice the empty div reserved for our message -->
+        <input id="username" type="text">
+        <button type="submit">Submit</button>
+    </form>
+    <form method="GET" action="/usersearch">  <!-- using GET will place the form inputs in the url as query strings-->
+        <input type="text" name="name">
+        <button type="submit">Search</button>
+    </form>
+</html>
